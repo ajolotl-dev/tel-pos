@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <!-- Politicas de seguridad: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+
+    <!--Estilos de CSS-->
+    <link rel="stylesheet" href="./Style/style.css" />
+    <link rel="stylesheet" href="index.css">
+
+    <!--ICONOS de bootstrap-->
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
+    <title>Telcel</title>
+</head>
+
+<body>
+
+    <!-- Section: Login -->
+    <section class="m-0 vh-100 row justify-content-center align-items-center bg-light">
+        <div class="col-auto p-5 text-center shadow bg-body rounded-1" style="width: 25em;">
+            <i class="bi bi-person-fill text-secondary" style="font-size: 6rem;"></i>
+            <div class="alert alert-danger" role="alert" id="alert">usuario y/o contraseña es incorrecto</div>
+            <form action="" class="text-start">
+                <label for="user" class="fw-bold">Usuario</label>
+                <input type="text" class="form-control py-2 mb-4 border border-2 rounded-1" id="inputUser">
+
+                <label for="password" class="fw-bold">Contraseña</label>
+                <input type="password" class="form-control p-2 mb-4 border border-2 rounded-1" id="inputPass">
+
+                <input type="button" class="btn btn-primary w-100 py-2 fw-bold text-uppercase rounded-1" id="button-lg" value="Iniciar Sesión"/>
+            </form>
+        </div>
+    </section>
+
+    <!--Scripts-->
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="./index.js"></script>
+</body>
+
+</html>
