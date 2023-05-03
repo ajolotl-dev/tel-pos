@@ -1,28 +1,47 @@
+const $ = selector => document.querySelector(selector)
+
+const btnLogin = $('#btnLogin');// Obtener referencia a botón por id
+const alertLogin = $('#alert');
+const inputUser = $('#inputUser');
+const inputPass = $('#inputPass');
+
+let userInput = {};
+
 function ocultarAlert(){
-    document.getElementById('alert').style.display = 'none';
+    alertLogin.style.display = 'none';
 }
 
 function mostrarAlert(){
-    document.getElementById('alert').style.display = 'block';
+    alertLogin.style.display = 'block';
 }
 
-// Obtener referencia a botón
-const botonLogin = document.getElementById('button-lg');
-
-botonLogin.addEventListener('click', function(evento){
-    let user = document.getElementById("inputUser").value;
-    let pass = document.getElementById("inputPass").value;
-
-
-    if (user == 'admin' && pass === 'admin') {
-        //alert(`Acceso consedido: \n  \n Usuario: ${user} \n Contraseña: ${pass}`);
+async function login() {
+    userInput.user = inputUser.value;
+    userInput.password = inputPass.value;
+    
+    const user = await window.electronAPI.userSearch(userInput); //busca el usuario en la BD
+    //const user = userInput;
+    if (user) {
         ocultarAlert();
-
+        window.electronAPI.login(user);
     } else {
-        console.log(`Valor de usuario: ${pass} \nValor de usuario: ${user}`);
         mostrarAlert();
-
     }
+}
+
+btnLogin.addEventListener('click', (event) => {
+    login();
 });
 
-ocultarAlert();
+inputUser.addEventListener('keypress', (event) =>{
+    if (event.keyCode === 13) {
+        login();
+    } 
+})
+
+inputPass.addEventListener('keypress', (event) =>{
+    if (event.keyCode === 13) {
+        login();
+    }
+})
+

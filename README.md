@@ -2,9 +2,10 @@
 
 ## Requisitos para desarrollo
 
-* Node.js 
-* Electron js
-* Editor de codigo
+* **Node.js** [Dowload](https://nodejs.org/es)
+* **Electron js**
+* **Editor de codigo**
+* **MariaDB** (HeidiSQL) [Dowload](https://mariadb.org/)
 
 
 ## Instalación
@@ -25,3 +26,12 @@ npm start
 
 ---
 > **Nota:** El sistema ya cuenta con un Login.
+---
+
+## Tecnologias
+Tecnologias, bibliotecas y herramientas utilizadas para desarrollo del sistema:
+
+* **[ Electron js.](https://www.electronjs.org/es/)**
+* **[ Bootstrap 5.](https://getbootstrap.com/)**
+* **[ Boxicons.](https://boxicons.com/)**
+* **[ MariaDB.](https://mariadb.org/)**

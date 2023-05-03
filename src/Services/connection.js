@@ -1,14 +1,12 @@
-const mysql = require('promise-mysql');
+const mariadb = require('mariadb');
 
-const connection = mysql.createConnection({
+const config = {
     host: 'localhost',
     user: 'root',
     password: '12345678',
-    database: 'gympos',
-})
+    database: 'telpos',
+};
 
-function getConnection(){
-    return connection;
-}
+const pool = mariadb.createPool(config);
 
-module.exports = { getConnection }
+module.exports = pool;

@@ -1,12 +1,25 @@
-// See the Electron documentation for details on how to use preload scripts:
-// https://www.electronjs.org/docs/latest/tutorial/process-model#preload-scripts
-window.addEventListener('DOMContentLoaded', () => {
-  const replaceText = (selector, text) => {
-    const element = document.getElementById(selector)
-    if (element) element.innerText = text
-  }
+const { contextBridge, ipcRenderer } = require('electron');
 
-  for (const type of ['chrome', 'node', 'electron']) {
-    replaceText(`${type}-version`, process.versions[type])
-  }
+contextBridge.exposeInMainWorld('electronAPI', {
+  userSearch: async (usuario) =>{
+    try {
+      const resultado = await ipcRenderer.invoke('search-user', usuario);
+      return resultado;
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  userData: () => {
+    return new Promise((resolve, reject) => {
+      ipcRenderer.once('user-data', (event, obj) =>{
+        resolve(obj);
+      });
+    });
+  },
+  login: (someArgument) => {
+    ipcRenderer.invoke('login', someArgument);
+  },
+  signOut: (someArgument) => {
+    ipcRenderer.invoke('sign-out', someArgument);
+  },
 })
